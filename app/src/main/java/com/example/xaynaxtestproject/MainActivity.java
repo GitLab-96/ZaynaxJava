@@ -24,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -34,7 +36,7 @@ import java.util.ArrayList;
 import static android.graphics.Paint.STRIKE_THRU_TEXT_FLAG;
 
 public class MainActivity extends AppCompatActivity {
-
+    private ImageView more,search,chabron;
     private TextView previousAmount;
    // private ImageView productOne,productTwo,productThree,productFour,productFive;
     private BottomSheetDialog bottomSheetDialog;
@@ -69,7 +71,34 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_expandable_list_item_1,currency);
         sp.setAdapter(adapter);
 
+        more = findViewById(R.id.more);
+        search = findViewById(R.id.search);
+        chabron = findViewById(R.id.backCabron);
 
+        final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout);
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appBarLayout);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = true;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    more.setVisibility(View.VISIBLE);
+                    search.setVisibility(View.VISIBLE);
+                    chabron.setVisibility(View.VISIBLE);
+                    isShow = true;
+                } else if(isShow) {
+                    more.setVisibility(View.INVISIBLE);
+                    search.setVisibility(View.INVISIBLE);
+                    chabron.setVisibility(View.INVISIBLE);
+                    isShow = false;
+                }
+            }
+        });
 
 
 
@@ -99,6 +128,8 @@ public class MainActivity extends AppCompatActivity {
                         return imageView;
                     }
                 });
+
+
 
 
 
