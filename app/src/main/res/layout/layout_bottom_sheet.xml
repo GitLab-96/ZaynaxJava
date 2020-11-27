@@ -9,7 +9,7 @@
     android:id="@+id/layoutBottomSheet"
     android:layout_height="wrap_content"
     app:behavior_hideable="true"
-    app:behavior_peekHeight="0dp"
+    app:behavior_peekHeight="@dimen/_100sdp"
     app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior">
 
 
@@ -29,6 +29,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:textSize="@dimen/_13sdp"
+            android:fontFamily="@font/seguisb"
+            android:layout_marginBottom="@dimen/_8sdp"
             android:text="Product Option"/>
 
     </LinearLayout>
@@ -44,7 +47,7 @@
             android:layout_width="0dp"
             android:layout_weight="1.5"
             android:layout_height="wrap_content"
-            android:src= "@drawable/ic_keyboard_arrow_left_black_24dp"
+            android:src= "@drawable/chevron_black"
             android:layout_margin="@dimen/_5sdp"
             android:padding="@dimen/_10sdp"
             android:background="@drawable/oval_background"/>
@@ -342,7 +345,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:orientation="horizontal">
 
         <TextView
